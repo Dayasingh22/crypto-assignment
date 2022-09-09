@@ -8,9 +8,12 @@ const CryptoCurrencies = (props) => {
   const [allCryptoCoin, setCryptoCoin] = useState([]);
   const [isLoading, setLoadingState] = useState(false);
   const [error, setError] = useState(null);
+  const [showEffect, setShowEffect] = useState(true);
 
   async function fetchingData() {
-    setLoadingState(true);
+    if (showEffect) {
+      setLoadingState(true);
+    }
     setError(null);
     try {
       let url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=200&page=1&sparkline=false`;
@@ -32,6 +35,11 @@ const CryptoCurrencies = (props) => {
     }
     setLoadingState(false);
   }
+
+  setTimeout(() => {
+    setShowEffect(false);
+    fetchingData();
+  }, 5000);
 
   useEffect(() => {
     fetchingData();

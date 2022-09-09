@@ -7,7 +7,7 @@ const Coin = (props) => {
 
   let symbol = props.eachData.symbol.toUpperCase();
 
-  let price = props.eachData.current_price?.toLocaleString();
+  let price = props.eachData.current_price?.toFixed(6);
   if (!price) {
     price = 0;
   }
@@ -38,14 +38,10 @@ const Coin = (props) => {
             className="w-6 h-6"
             src={props.eachData?.image}
           />
-          <span
-            className="ml-3 font-medium text-base first-letter:uppercase"
-          >
+          <span className="ml-3 font-medium text-base first-letter:uppercase">
             {props.eachData?.id}
           </span>
-          <span
-            className="ml-4 font-medium text-xs text-grey-500"
-          >
+          <span className="ml-4 font-medium text-xs text-grey-500">
             {symbol}
           </span>
         </div>
