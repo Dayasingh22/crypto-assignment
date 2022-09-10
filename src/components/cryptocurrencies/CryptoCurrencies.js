@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "react-loading-skeleton/dist/skeleton.css";
 import ALlCurrencies from "./AllCurrencies";
-import { CSVLink } from "react-csv";
 import HighChart from "./HighChart";
 
 const CryptoCurrencies = (props) => {
@@ -36,6 +35,7 @@ const CryptoCurrencies = (props) => {
     setLoadingState(false);
   }
 
+  //fetches data in every 5 seconds
   setTimeout(() => {
     setShowEffect(false);
     fetchingData();
@@ -53,14 +53,7 @@ const CryptoCurrencies = (props) => {
         errorCoin={error}
         loadingStatus={isLoading}
       />
-      <CSVLink
-        data={allCryptoCoin}
-        filename={"crypto-prices.csv"}
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-      >
-        Download Crypto CSV
-      </CSVLink>
-      <HighChart />
+      <HighChart onCloseModalHandler={props.onsetModal} />
     </div>
   );
 };
